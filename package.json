@@ -1,0 +1,12 @@
+{
+  "name": "freetogame",
+  "version": "1.0.0",
+  "description": "FREE GAME INFORMATION",
+  "main": "index.js",
+  "scripts": {
+    "test": "http-server ./src/main.html"
+  },
+  "author": "ANDRE SAPUTRA",
+  "license": "ISC",
+  "devDependencies": {}
+}
