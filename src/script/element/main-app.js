@@ -1,15 +1,17 @@
-import "./contents-app.js";
-import "./sidebar-app.js"
-class MainApp extends HTMLElement{
-    connectedCallback(){
-        this.render();
-    }
-    render(){
-        this.innerHTML = `
+import './contents-app.js';
+import './sidebar-app.js';
+
+class MainApp extends HTMLElement {
+  connectedCallback() {
+    this.render();
+  }
+
+  render() {
+    this.innerHTML = `
         <style>
         main{
             display : flex;
-            margin : 1.2em; 
+            margin : 35px 25px;
         }
         contents-app{
             background-color : #364F6B;
@@ -30,9 +32,9 @@ class MainApp extends HTMLElement{
         <main>
         <contents-app></contents-app>
         <sidebar-app></sidebar-app>
-        </main>
-        `
-    }
+        </main>   
+        `;
+  }
 }
 
-customElements.define("main-app",MainApp);
+customElements.define('main-app', MainApp);

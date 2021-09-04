@@ -1,12 +1,10 @@
-class NavbarApp extends HTMLElement{
+class NavbarApp extends HTMLElement {
+  connectedCallback() {
+    this.render();
+  }
 
-    connectedCallback(){
-        this.render();
-    }
-
-    render(){
-        this.innerHTML =
-        `
+  render() {
+    this.innerHTML = `
         <style>
         nav{
             font-family: 'Roboto Mono', monospace, sans-serif;
@@ -20,8 +18,8 @@ class NavbarApp extends HTMLElement{
         <nav>
             FGAMEINFO
         </nav>
-        `
-    }
+        `;
+  }
 }
 
-customElements.define("navbar-app",NavbarApp);
+customElements.define('navbar-app', NavbarApp);
