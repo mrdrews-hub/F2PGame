@@ -11,8 +11,16 @@ class ContentsApp extends HTMLElement {
 
   render() {
     this.innerHTML = `
+    <style>
+    .container{
+      display : flex;
+      justify-content : space-between;
+    }
+    </style>
+    <h1>YOUR CONTENTS</h1>
         <div class="container">
-            <h1>YOUR CONTENTS</h1>
+            <game-list></game-list>
+            <game-list></game-list>
             <game-list></game-list>
         </div>
         `;
