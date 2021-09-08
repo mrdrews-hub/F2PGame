@@ -1,10 +1,16 @@
 class DataSource {
-  static searchGame(keyword) {
-    return fetch(`https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=${keyword}`)
+  static getGames(keyword) {
+    return fetch(`https://www.freetogame.com/api/${keyword}`,{
+      "method": "GET",
+	    "headers": {
+      "x-rapidapi-host": "free-to-play-games-database.p.rapidapi.com",
+      "x-rapidapi-key": "undefined"
+      }
+    })
       .then((response) => response.json())
       .then((responseData) => {
-        if (responseData.teams) {
-          return Promise.resolve(responseData.teams);
+        if (responseData.id) {
+          return Promise.resolve(responseData);
         }
         return Promise.reject(`${keyword} is Not Found`);
       });

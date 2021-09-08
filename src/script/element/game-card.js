@@ -1,40 +1,44 @@
-class GameList extends HTMLElement {
-  connectedCallback() {
+class GameCard extends HTMLElement {
+  constructor(){
+    super();
+    this._shadow = this.attachShadow({mode:"open"});
+  }
+  set gameData(game){
+    this._gameData = game;
     this.render();
   }
 
   render() {
-    this.innerHTML = `
+    this._shadow.innerHTML = `
         <style>
+        :host{
+          width : min-content;
+        }
         .card{
            display : grid;
-           grid-template-column : 150px;
-           grid-template-rows : 210px 180px 60px;
+           grid-template-column : 250px;
+           grid-template-rows : 1fr 1fr auto;
            grid-template-areas : "image" "text" "stats";
 
            border-radius : 18px;
            background : var(--bg-color);
-           box-shadow : 5px 5px 15px rgba(0,0,0,.9);
-           box-sizing : border-box;
+           box-shadow : 5px 5px 10px rgba(0,0,0,.9);
 
            transition: .3s ease;
-           margin:15px;
-           cursor : pointer;
+           
+          margin : 25px;
         }
         .title{
           text-align : center;
           font-size:28px;
         }
-        .card-image {
-          grid-area: image;
-        }
         .card-text {
           grid-area: text;
-          margin : 15px;
+          margin : 0px 15px;
           color : var(--text-color);
         }
-        .card-stats {
-          grid-area: stats; 
+        .card-text p {
+          text-align : justify;
         }
         .card-image {
           grid-area: image;
@@ -42,15 +46,8 @@ class GameList extends HTMLElement {
           border-top-right-radius: 15px;
           background-size: cover;
         }
-        .card-text .info {
-          text-align : left;
-          color : gray;
-          font-weight : bold;
-          margin-bottom : 25px;
-        }
-        .card-text p {
-          text-align : justify;
-          margin : 10px 0px;
+        .card-image img {
+          width : 300px;
         }
         .card-stats {
           grid-area: stats; 
@@ -67,7 +64,8 @@ class GameList extends HTMLElement {
           align-items: center;
           justify-content: center;
           flex-direction: column;
-        
+
+          border-right : 2px solid black;
           color: var(--text-color);
           padding:10px;
         }
@@ -77,6 +75,7 @@ class GameList extends HTMLElement {
         }
         .card-stats .link{
           transition: .2s all;
+          border-right : none;
         }
         .card-stats .link:hover{
           transform: scale(1.06);
@@ -84,19 +83,17 @@ class GameList extends HTMLElement {
         }
         </style>
         <div class="card">
-          <div class="card-image"><img src="https://www.freetogame.com/g/473/thumbnail.jpg" alt="thumbnail" /></div>
+          <div class="card-image"><img src="${this._gameData.thumbnail}" alt="thumbnail" /></div>
           <div class="card-text">
-          <h2 class = "title">DAUNTLESS</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates deserunt aliquam nihil recusandae tempore distinctio molestiae doloribus soluta, ab ipsam.</p>
-          <span class="info">Release Date : 21 May 2019</span><br>
-          <span class="info">Genre : MMORPG </span>
+          <h2 class = "title">${this._gameData.title}</h2>
+          <p>${this._gameData.short_description}</p>
           </div>
           <div class="card-stats">
           <div class="stat">
             <div class="value">4<sup>m</sup></div>
             <div class="type">WINDOWS</div>
           </div>
-          <a href="#" class="stat link">
+          <a href="${this._gameData.id}" class="stat link" data-id ="${this._gameData.id}">
             <div class="value">i</div>
             <div class="type">Detail</div>
           </a>
@@ -105,4 +102,4 @@ class GameList extends HTMLElement {
         `;
   }
 }
-customElements.define('game-list', GameList);
+customElements.define('game-card', GameCard);

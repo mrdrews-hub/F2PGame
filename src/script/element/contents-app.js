@@ -1,29 +1,29 @@
-import './game-list.js';
+import './game-card.js';
 
 class ContentsApp extends HTMLElement {
+
   set gameData(game) {
     this._gameData = game;
-  }
-
-  connectedCallback() {
     this.render();
   }
 
+  connectedCallback(){
+    console.log(this._gameData);
+  }
+
   render() {
-    this.innerHTML = `
-    <style>
-    .container{
-      display : flex;
-      justify-content : space-between;
+    this.innerHTML = ``;
+    // this._gameData.forEach(game => {
+    //   const gameItem = document.createElement("game-card");
+    //   gameItem.gameData = game;
+
+    //   this.appendChild(gameItem);
+    // })
+    for(let i = 0 ; i < 12; i++){
+      const gameCard = document.createElement("game-card");
+      gameCard.gameData = this._gameData[i];
+      this.appendChild(gameCard);
     }
-    </style>
-    <h1>YOUR CONTENTS</h1>
-        <div class="container">
-            <game-list></game-list>
-            <game-list></game-list>
-            <game-list></game-list>
-        </div>
-        `;
   }
 }
 
