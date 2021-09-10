@@ -13,32 +13,23 @@ class GameCard extends HTMLElement {
         <style>
         :host{
           width : min-content;
+          height : auto;
         }
         .card{
-           display : grid;
-           grid-template-column : 250px;
-           grid-template-rows : 1fr 1fr auto;
-           grid-template-areas : "image" "text" "stats";
+          display : grid;
+          grid-template-column : 1fr;
+          grid-template-rows : 1fr .7fr 60px ;
+          grid-template-areas : "image" "text" "details" ;
 
-           border-radius : 18px;
-           background : var(--bg-color);
-           box-shadow : 5px 5px 10px rgba(0,0,0,.9);
-
-           transition: .3s ease;
-           
-          margin : 25px;
+          border-radius : 18px;
+          background : var(--bg-color);
+          box-shadow : 5px 5px 10px rgba(0,0,0,.9);
+          box-sizing : border-box;
+          transition: .3s ease;
+          margin : 15px 10px;
         }
-        .title{
-          text-align : center;
-          font-size:28px;
-        }
-        .card-text {
-          grid-area: text;
-          margin : 0px 15px;
-          color : var(--text-color);
-        }
-        .card-text p {
-          text-align : justify;
+        .card:hover {
+          transform : scale(103%);
         }
         .card-image {
           grid-area: image;
@@ -46,58 +37,43 @@ class GameCard extends HTMLElement {
           border-top-right-radius: 15px;
           background-size: cover;
         }
-        .card-image img {
-          width : 300px;
+        .card-text {
+          grid-area: text;
+          margin : 0px 15px;
+          color : var(--text-color);
         }
-        .card-stats {
-          grid-area: stats; 
-          display: grid;
-          grid-template-columns: 1fr  1fr;
-          grid-template-rows: 1fr;
-        
-          border-bottom-left-radius: 15px;
-          border-bottom-right-radius: 15px;
-          background: var(--bar-color);
+        .title{
+          text-align : center;
+          font-size:28px;
         }
-        .card-stats .stat {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-direction: column;
-
-          border-right : 2px solid black;
-          color: var(--text-color);
-          padding:10px;
+        .card-text p {
+          text-align : justify;
         }
-        .card:hover {
-          transform: scale(1.02);
-          box-shadow: 5px 5px 15px rgba(0,0,0,.6);
-        }
-        .card-stats .link{
-          transition: .2s all;
-          border-right : none;
-        }
-        .card-stats .link:hover{
-          transform: scale(1.06);
-          color : cyan;
+        .details {
+          grid-area : details;
+          display : flex;
+          justify-content : space-between;
+          margin : 15px;
+          color : gray;
+          font-weight : bold;
         }
         </style>
         <div class="card">
-          <div class="card-image"><img src="${this._gameData.thumbnail}" alt="thumbnail" /></div>
+
+          <div class="card-image">
+            <img src="${this._gameData.thumbnail}" alt="thumbnail"/>
+          </div>
+
           <div class="card-text">
-          <h2 class = "title">${this._gameData.title}</h2>
-          <p>${this._gameData.short_description}</p>
+            <h2 class = "title">${this._gameData.title}</h2>
+            <p>${this._gameData.short_description}</p>
           </div>
-          <div class="card-stats">
-          <div class="stat">
-            <div class="value">4<sup>m</sup></div>
-            <div class="type">WINDOWS</div>
+
+          <div class="details">
+            <div class="platform">${this._gameData.platform}</div>
+            <div class="Genre">${this._gameData.genre}</div>
           </div>
-          <a href="${this._gameData.id}" class="stat link" data-id ="${this._gameData.id}">
-            <div class="value">i</div>
-            <div class="type">Detail</div>
-          </a>
-          </div>
+
         </div>
         `;
   }

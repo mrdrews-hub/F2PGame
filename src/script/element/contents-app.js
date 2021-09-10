@@ -12,17 +12,30 @@ class ContentsApp extends HTMLElement {
   }
 
   render() {
-    this.innerHTML = ``;
+    this.innerHTML = `
+    <style>
+    main{
+      display : flex;
+      justify-content : space-around;
+      flex-wrap : wrap;
+      overflow:none;
+      margin : 25px 20px;
+    }
+    </style>
+    <main>
+    </main>
+    `;
     // this._gameData.forEach(game => {
     //   const gameItem = document.createElement("game-card");
     //   gameItem.gameData = game;
 
     //   this.appendChild(gameItem);
     // })
+    const main = this.querySelector('main');
     for(let i = 0 ; i < 12; i++){
       const gameCard = document.createElement("game-card");
       gameCard.gameData = this._gameData[i];
-      this.appendChild(gameCard);
+      main.appendChild(gameCard);
     }
   }
 }

@@ -1,5 +1,3 @@
-import './sidebar-app.js';
-
 class MainApp extends HTMLElement {
   connectedCallback() {
     this.render();
@@ -9,27 +7,18 @@ class MainApp extends HTMLElement {
     this.innerHTML = `
         <style>
         main{
-            display : flex;
+            display : block;
             margin : 35px 25px;
+            background-color : #364F6B;
         }
         contents-app{
           background-color : #364F6B;
           color : var(--text-color);
-          margin-right : 1em;
-          flex-basis : 100%;
-          order : 1;
           padding : 1.1em;
           display : flex;
-          flex-wrap : wrap;
-          justify-content : center;
+          justify-content : space-around;
+          
       }
-        sidebar-app{
-            background-color:var(--main-color);
-            color : var(--text-color);
-            flex-basis : 20%;
-            order : 2;
-            padding : 1.2em
-        }
         </style>
         <main>
         <contents-app></contents-app>
