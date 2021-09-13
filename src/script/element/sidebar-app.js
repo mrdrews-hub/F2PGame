@@ -4,21 +4,29 @@ class SidebarApp extends HTMLElement {
     this.render();
   }
 
+  set clickEvent(event){
+    this._clickevent = event;
+    this.render();
+  }
+
   render() {
     this.innerHTML = `
     <style>
     aside{
       position : fixed;
+      top:10px;
       left : -260px;
       width : 250px;
       height : 100%;
       background-color : var(--bar-color);
+      transition : all .3s;
     }
     aside .menu-title{
       color : var(--text-color);
       background : var(--main-color);
       line-height : 50px;
       padding-left : 10px;
+      user-select : none;
     }
     aside ul a {
       display : block;
@@ -37,6 +45,9 @@ class SidebarApp extends HTMLElement {
       padding-left : 30px;
       transform : scale(104%);
     }
+    #check{
+      display : none;
+    }
     label #active,label #close{
       position : absolute;
       cursor : pointer;
@@ -48,33 +59,37 @@ class SidebarApp extends HTMLElement {
       color : white;
     }
     label #close{
-      z-index : 11111;
-      left : 195px;
+      font-size : 2em;
+      z-index : 2;
+      left : -260px;
       top : 17px;
-      font-size : 1.8em;
-      color : red;
-      padding : 4px 9px;
+      transition : all .3s;
     }
     #check:checked ~ aside{
       left:0;
+    }
+    #check:checked ~ label #close{
+      left : 229px;;
     }
     </style>
 
     <input type="checkbox" id="check">
     <label for="check">
       <i class="fas fa-bars" id="active"></i>
-      <i class="fas fa-times" id="close"></i>
+      <i class="fas fa-angle-left" id="close"></i>
     </label>
     <aside>
       <h3 class="menu-title">Sort By</h3>
       <ul>
-      <li><a href ="#"><i class="fab fa-windows"></i> Windows</a></li>
-      <li><a href ="#"><i class="fab fa-windows"></i> Browser</a></li>
-      <li><a href ="#"><i class="fab fa-windows"></i> Popularity</a></li>
-      <li><a href ="#"><i class="fab fa-windows"></i> Release Date</a></li>
+      <li><a href ="#" class="sort"><i class="fab fa-windows"></i> Windows</a></li>
+      <li><a href ="#" class="sort"><i class="fab fa-windows"></i> Browser</a></li>
+      <li><a href ="#" class="sort" id="popularity"><i class="fab fa-windows"></i> Popularity</a></li>
+      <li><a href ="#" class="sort" id="release-date"><i class="fab fa-windows"></i> Release Date</a></li>
+      <li><a href ="#" class="sort" id="alphabetical"><i class="fab fa-windows"></i> Alphabetical</a></li>
       </ul>
     </aside>
         `;
+        this.querySelectorAll('.sort').forEach(el => el.addEventListener("click",this._clickevent));
   }
 }
 customElements.define('sidebar-app', SidebarApp);

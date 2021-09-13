@@ -1,4 +1,4 @@
-
+import './sidebar-app';
 class NavbarApp extends HTMLElement {
   connectedCallback() {
     this.render();
@@ -12,6 +12,9 @@ class NavbarApp extends HTMLElement {
             font-weight : bold;
             background-color : var(--bar-color);
             color : var(--text-color);
+            position : sticky;
+            top:0;
+            z-index : 1;
         }
         .logo{
           padding: 26px;
@@ -20,6 +23,7 @@ class NavbarApp extends HTMLElement {
         </style>
         <header>
             <h3 class="logo">.FGameInfo</h3>
+            <sidebar-app></sidebar-app>
         </header>
         `;
 

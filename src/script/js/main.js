@@ -1,45 +1,22 @@
-import  "../element/contents-app";
-const axios = require('axios').default;
-const URL = "https://free-to-play-games-database.p.rapidapi.com/api/";
+import DataSource from "../data/source.js";
 
-const main = () => {
+function main() {
 
-  function getGames(){
-    axios.request({
-      method: "GET",
-      url : `${URL}games`,
-      headers: {
-        "x-rapidapi-host": "free-to-play-games-database.p.rapidapi.com",
-        "x-rapidapi-key": "1e6841a2a6msh14d9994e0472f17p187ebajsnbfe925f17862"
-      }
-    })
-    .then(responseData => {
-      console.log(responseData);
-      renderAllGames(responseData.data)
-    })
-    .catch(err => console.log(err));
+  const contentsApp = document.querySelector('contents-app');
+  const sidebar = document.querySelector('sidebar-app');
+
+  const renderAllGames = games => contentsApp.gameData = games;
+  
+  DataSource.getAllGames()
+  .then(renderAllGames)
+  .catch();
+
+  const onBtnClicked = (as) => {
+    DataSource.getByCategories(as.target.id)
+    .then(renderAllGames)
+    .catch()
   }
-
-
-  function getByCategories(keyword){
-    axios.request({
-      method: "GET",
-      url : `${URL + keyword}`,
-      headers: {
-        "x-rapidapi-host": "free-to-play-games-database.p.rapidapi.com",
-        "x-rapidapi-key": "1e6841a2a6msh14d9994e0472f17p187ebajsnbfe925f17862"
-      }
-    })
-    .then(responseData => renderAllGames(responseData.data))
-    .catch(err => console.log(err));
-  }
-
-  const renderAllGames = (games) => {
-    const contentsApp = document.querySelector('contents-app');
-    contentsApp.gameData = games
-  }
-
-  getGames();
+  sidebar.clickEvent = onBtnClicked;
 
 }
 
