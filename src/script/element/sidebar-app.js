@@ -1,10 +1,9 @@
 class SidebarApp extends HTMLElement {
-
   connectedCallback() {
     this.render();
   }
 
-  set clickEvent(event){
+  set clickEvent(event) {
     this._clickevent = event;
     this.render();
   }
@@ -89,7 +88,7 @@ class SidebarApp extends HTMLElement {
       </ul>
     </aside>
         `;
-        this.querySelectorAll('.sort').forEach(el => el.addEventListener("click",this._clickevent));
+    this.querySelectorAll('.sort').forEach((el) => el.addEventListener('click', this._clickevent));
   }
 }
 customElements.define('sidebar-app', SidebarApp);

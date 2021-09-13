@@ -21,13 +21,13 @@ module.exports = {
         ],
       },
       {
-        test : /\.(png|jpg)/i,
-        use : [
+        test: /\.(png|jpg)/i,
+        use: [
           {
-            loader : 'file-loader'
-          }
-        ]
-      }
+            loader: 'file-loader',
+          },
+        ],
+      },
     ],
   },
   plugins: [

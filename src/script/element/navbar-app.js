@@ -1,4 +1,5 @@
 import './sidebar-app';
+
 class NavbarApp extends HTMLElement {
   connectedCallback() {
     this.render();
@@ -26,13 +27,8 @@ class NavbarApp extends HTMLElement {
             <sidebar-app></sidebar-app>
         </header>
         `;
-
   }
 
-  toggleNav(){
-    const nav = document.querySelector('nav');
-    const toggle = document.querySelector('.toggle');
-  }
 }
 
 customElements.define('navbar-app', NavbarApp);

@@ -1,9 +1,10 @@
 class GameCard extends HTMLElement {
-  constructor(){
+  constructor() {
     super();
-    this._shadow = this.attachShadow({mode:"open"});
+    this._shadow = this.attachShadow({ mode: 'open' });
   }
-  set gameData(game){
+
+  set gameData(game) {
     this._gameData = game;
     this.render();
   }
