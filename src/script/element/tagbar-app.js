@@ -1,13 +1,15 @@
-class TagbarApp extends HTMLElement{
-    connectedCallback(){
-        this.render();
-    }
-    set clickEvent(event){
-        this._clickevent = event;
-        this.render();
-    }
-    render(){
-        this.innerHTML = `
+class TagbarApp extends HTMLElement {
+  connectedCallback() {
+    this.render();
+  }
+
+  set clickEvent(event) {
+    this._clickevent = event; 
+    this.render();
+  }
+
+  render() {
+    this.innerHTML = `
         <style>
         .tagContainer{
             display: flex;
@@ -21,11 +23,23 @@ class TagbarApp extends HTMLElement{
             border-radius : 25px;
             text-decoration : none;
             font-weight : bold; 
+            text-align : center;
             color : var(--text-color);
             transition: ease .3s;
           }
           .tagContainer .tagbtn:hover{
             background-color : var(--bar-color);  
+          }
+          .tagContainer .active {
+            background-color : var(--bar-color); 
+          }
+          @media (max-width : 768px){
+            .tagContainer{
+              display: flex;
+              justify-content : center;
+              padding: 30px;
+              flex-wrap : wrap;
+            }
           }
         </style>
         <div class="tagContainer">
@@ -36,9 +50,12 @@ class TagbarApp extends HTMLElement{
         <a href="#" class="tagbtn">Survival</a>
         <a href="#" class="tagbtn">Action</a>
         </div>
-        `
-        this.querySelectorAll('.tagbtn').forEach((el) => el.addEventListener("click", this._clickevent));
-    }
+        `;
+    this.querySelectorAll('.tagbtn').forEach( (el) => {
+      el.addEventListener('click', this._clickevent);
+    });
 
+    // this.querySelectorAll('.tagbtn').forEach((el) => console.log(el.classList.contains('active')));
+  }
 }
 customElements.define('tagbar-app', TagbarApp);

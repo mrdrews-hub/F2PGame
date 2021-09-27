@@ -1,8 +1,10 @@
+import axios from 'axios';
+import './game-detail';
 class GameCard extends HTMLElement {
-  constructor() {
-    super();
-    this._shadow = this.attachShadow({ mode: 'open' });
-  }
+  // constructor() {
+  //   super();
+  //   this._shadow = this.attachShadow({ mode: 'open' });
+  // }
 
   set gameData(game) {
     this._gameData = game;
@@ -10,17 +12,15 @@ class GameCard extends HTMLElement {
   }
 
   render() {
-    this._shadow.innerHTML = `
+    this.innerHTML = `
         <style>
-        :host{
-          width : min-content;
-          height : auto;
-        }
+        
         .card{
           display : grid;
-          grid-template-column : 1fr;
-          grid-template-rows : 1fr .7fr 60px ;
+          grid-template-columns : 1fr;
+          grid-template-rows : 1fr max-content 60px ;
           grid-template-areas : "image" "text" "details" ;
+          width: min-content;
 
           border-radius : 18px;
           background : var(--bg-color);
@@ -32,11 +32,9 @@ class GameCard extends HTMLElement {
         .card:hover {
           transform : scale(103%);
         }
-        .card-image {
+        .card-image img{
           grid-area: image;
-          border-top-left-radius: 15px;
-          border-top-right-radius: 15px;
-          background-size: cover;
+          border-radius : 15px;
         }
         .card-text {
           grid-area: text;
@@ -46,28 +44,31 @@ class GameCard extends HTMLElement {
         .title{
           text-align : center;
           font-size:28px;
+          margin-top: 10px; 
         }
         .card-text p {
           text-align : justify;
+          margin-top : 15px;
         }
         .details {
           grid-area : details;
           display : flex;
           justify-content : space-between;
-          margin : 15px;
+          padding : 15px;
           color : gray;
           font-weight : bold;
+          margin-top : 10px;
         }
-        </style>
-        <div class="card">
 
+        </style>
+
+        <a href="#" id="${this._gameData.id}" class="card">
           <div class="card-image">
             <img src="${this._gameData.thumbnail}" alt="thumbnail"/>
           </div>
 
           <div class="card-text">
             <h2 class = "title">${this._gameData.title}</h2>
-            <p>${this._gameData.short_description}</p>
           </div>
 
           <div class="details">
@@ -75,8 +76,31 @@ class GameCard extends HTMLElement {
             <div class="Genre">${this._gameData.genre}</div>
           </div>
 
-        </div>
+        </a>
         `;
+    this.querySelector('.card').addEventListener('click', () => {
+      const modal = document.createElement('game-detail');
+      document.body.append(modal);
+      
+      axios({
+        method: 'GET',
+        url: 'https://free-to-play-games-database.p.rapidapi.com/api/game',
+        params: { id : this.querySelector('.card').id },
+        headers: {
+          'x-rapidapi-host': 'free-to-play-games-database.p.rapidapi.com',
+          'x-rapidapi-key': '1e6841a2a6msh14d9994e0472f17p187ebajsnbfe925f17862',
+        },
+      })
+      .then(response => {
+        modal.gameDetail = response.data;
+        modal.visible = true;
+      });
+
+      modal.addEventListener('cancel', () => {
+        modal.visible = "";
+        modal.remove();
+      });
+    });
   }
 }
 customElements.define('game-card', GameCard);

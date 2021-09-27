@@ -20,14 +20,16 @@ module.exports = {
           },
         ],
       },
+      // file-loader
       {
-        test: /\.(png|jpg)/i,
+        test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
             loader: 'file-loader',
           },
         ],
       },
+      // end-file-loader
     ],
   },
   plugins: [

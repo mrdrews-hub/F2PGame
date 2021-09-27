@@ -28,7 +28,6 @@ class NavbarApp extends HTMLElement {
         </header>
         `;
   }
-
 }
 
 customElements.define('navbar-app', NavbarApp);

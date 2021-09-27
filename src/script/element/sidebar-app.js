@@ -80,11 +80,9 @@ class SidebarApp extends HTMLElement {
     <aside>
       <h3 class="menu-title">Sort By</h3>
       <ul>
-      <li><a href ="#" class="sort"><i class="fab fa-windows"></i> Windows</a></li>
-      <li><a href ="#" class="sort"><i class="fab fa-windows"></i> Browser</a></li>
-      <li><a href ="#" class="sort" id="popularity"><i class="fab fa-windows"></i> Popularity</a></li>
-      <li><a href ="#" class="sort" id="release-date"><i class="fab fa-windows"></i> Release Date</a></li>
-      <li><a href ="#" class="sort" id="alphabetical"><i class="fab fa-windows"></i> Alphabetical</a></li>
+      <li><a href ="#" class="sort" id="popularity"><i class="fas fa-fire"></i> Popularity</a></li>
+      <li><a href ="#" class="sort" id="release-date"><i class="fas fa-sort-numeric-down"></i> Release Date</a></li>
+      <li><a href ="#" class="sort" id="alphabetical"><i class="fas fa-sort-alpha-down"></i> Alphabetical</a></li>
       </ul>
     </aside>
         `;
