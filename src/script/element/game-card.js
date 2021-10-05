@@ -1,11 +1,7 @@
 import axios from 'axios';
 import './game-detail';
-class GameCard extends HTMLElement {
-  // constructor() {
-  //   super();
-  //   this._shadow = this.attachShadow({ mode: 'open' });
-  // }
 
+class GameCard extends HTMLElement {
   set gameData(game) {
     this._gameData = game;
     this.render();
@@ -81,23 +77,23 @@ class GameCard extends HTMLElement {
     this.querySelector('.card').addEventListener('click', () => {
       const modal = document.createElement('game-detail');
       document.body.append(modal);
-      
+
       axios({
         method: 'GET',
         url: 'https://free-to-play-games-database.p.rapidapi.com/api/game',
-        params: { id : this.querySelector('.card').id },
+        params: { id: this.querySelector('.card').id },
         headers: {
           'x-rapidapi-host': 'free-to-play-games-database.p.rapidapi.com',
           'x-rapidapi-key': '1e6841a2a6msh14d9994e0472f17p187ebajsnbfe925f17862',
         },
       })
-      .then(response => {
-        modal.gameDetail = response.data;
-        modal.visible = true;
-      });
+        .then((response) => {
+          modal.gameDetail = response.data;
+          modal.visible = true;
+        });
 
       modal.addEventListener('cancel', () => {
-        modal.visible = "";
+        modal.visible = '';
         modal.remove();
       });
     });

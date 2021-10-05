@@ -1,6 +1,5 @@
 class GameDetail extends HTMLElement {
-
-  set gameDetail(game){
+  set gameDetail(game) {
     this._gameData = game;
     this.render();
     this._attachEventHandlers();
@@ -34,7 +33,7 @@ class GameDetail extends HTMLElement {
 
   _attachEventHandlers() {
     const cancelButton = this.querySelector('.cancel');
-    cancelButton.addEventListener('click', (e) => {
+    cancelButton.addEventListener('click', () => {
       this.dispatchEvent(new CustomEvent('cancel'));
       this.removeAttribute('visible');
     });

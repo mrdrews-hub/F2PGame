@@ -4,7 +4,7 @@ class TagbarApp extends HTMLElement {
   }
 
   set clickEvent(event) {
-    this._clickevent = event; 
+    this._clickevent = event;
     this.render();
   }
 
@@ -51,11 +51,9 @@ class TagbarApp extends HTMLElement {
         <a href="#" class="tagbtn">Action</a>
         </div>
         `;
-    this.querySelectorAll('.tagbtn').forEach( (el) => {
+    this.querySelectorAll('.tagbtn').forEach((el) => {
       el.addEventListener('click', this._clickevent);
     });
-
-    // this.querySelectorAll('.tagbtn').forEach((el) => console.log(el.classList.contains('active')));
   }
 }
 customElements.define('tagbar-app', TagbarApp);

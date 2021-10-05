@@ -14,9 +14,8 @@ class DataSource {
       .then((responseData) => {
         if (responseData.status == 200) {
           return Promise.resolve(responseData.data);
-        }else{
-          return Promise.reject();
         }
+        return Promise.reject();
       });
   }
 
@@ -60,12 +59,12 @@ class DataSource {
       });
   }
 
-  static getDetail(gameId){
+  static getDetail(gameId) {
     const URL = 'https://free-to-play-games-database.p.rapidapi.com/api/game';
     return axios({
       method: 'GET',
       url: URL,
-      params: { id : gameId },
+      params: { id: gameId },
       headers: {
         'x-rapidapi-host': 'free-to-play-games-database.p.rapidapi.com',
         'x-rapidapi-key': '1e6841a2a6msh14d9994e0472f17p187ebajsnbfe925f17862',

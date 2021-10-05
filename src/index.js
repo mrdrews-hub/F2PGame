@@ -1,5 +1,4 @@
-import '@fortawesome/fontawesome-free/js/all.js';
-import '@fortawesome/fontawesome-free/css/all.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'pace-js/pace';
 import 'pace-js/themes/orange/pace-theme-flash.css';
 import './css/style.css';

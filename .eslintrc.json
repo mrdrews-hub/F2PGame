@@ -13,6 +13,9 @@
     },
     "rules": {
         "no-underscore-dangle" : "off",
-        "import/no-extraneous-dependencies" : "off"
+        "import/no-extraneous-dependencies" : "off",
+        "eqeqeq" : "off",
+        "no-plusplus" : "off",
+        "max-len" : "off"
     }
 }

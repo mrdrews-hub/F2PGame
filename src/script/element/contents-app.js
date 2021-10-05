@@ -1,15 +1,15 @@
 import './game-card';
 
 class ContentsApp extends HTMLElement {
-  
   set gameData(game) {
     this._gameData = game;
     this.render();
   }
 
-  set title(value){
+  set title(value) {
     this._title = value;
   }
+
   render() {
     this.innerHTML = `
     <style>
@@ -36,21 +36,21 @@ class ContentsApp extends HTMLElement {
       }
     }
     </style>
-    <h2 class="resultTitle">Result For <span>${(this._title == undefined ? "All" : this._title)}</span> Games</h2>
+    <h2 class="resultTitle">Result For <span>${(this._title == undefined ? 'All' : this._title)}</span> Games</h2>
       <div class="content">
       </div>
     `;
+
     const main = this.querySelector('.content');
     for (let i = 0; i < 12; i++) {
       const gameCard = document.createElement('game-card');
       gameCard.gameData = this._gameData[i];
       main.appendChild(gameCard);
     }
-
   }
 
-  renderError(message){
-    this.innerHTML = "";
+  renderError(message) {
+    this.innerHTML = '';
     this.innerHTML += `
     <style>
     .warning{
@@ -59,7 +59,7 @@ class ContentsApp extends HTMLElement {
         text-align : center;
     }
     </style>
-    <h2 class="warning">${message}</h2>`
+    <h2 class="warning">${message}</h2>`;
   }
 }
 

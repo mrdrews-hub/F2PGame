@@ -14,7 +14,7 @@ function main() {
 
   DataSource.getAllGames()
     .then(renderAllGames)
-    .catch(renderError)
+    .catch(renderError);
 
   const onBtnCategoryClicked = (element) => {
     DataSource.filterGame(element.target.id)
@@ -30,7 +30,6 @@ function main() {
 
   sidebar.clickEvent = onBtnCategoryClicked;
   tagbtn.clickEvent = onBtnTagClicked;
-
 }
 
 export default main;
